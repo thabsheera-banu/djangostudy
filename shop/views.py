@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 
-# Create your views here.
+# Create your views here.dfdfdfdsdc
+
 def home(request,c_slug=None):
     c_page=None
     prodt=None
