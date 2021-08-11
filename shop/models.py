@@ -14,8 +14,8 @@ class categ(models.Model):
         ordering=('name',)
         verbose_name='category'
         verbose_name_plural='categories'
-   # def get_url(self):
-        #return reverse('prod_cat',args=self.slug)
+    def get_url(self):
+         return reverse('prod_cat',args=[self.slug])
     def __str__(self):
         return '{}'.format(self.name)
 
