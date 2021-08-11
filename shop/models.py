@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
-# Create your models here.
+# Create your models here.hi akms,dl
 
 
 
