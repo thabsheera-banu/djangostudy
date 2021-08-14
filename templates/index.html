@@ -8,13 +8,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+<style>
+    .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+    .abcd{
+    height:100%;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+
+  </style>
 </head>
+
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div  style="background-image:url('{% static 'hm/images/demo/backgrounds/06.jpg' %}');">
+<div class="abcd" style="background-image:url('{% static 'hm/images/demo/backgrounds/06.jpg' %}');">
   <!-- ################################################################################################ -->
 
   <!-- ################################################################################################ -->
@@ -37,16 +87,19 @@
   </div>
   <!-- ################################################################################################ -->
 </div>
-<div class="category">
-      {% for i in ct %}
-      <b style="color:white">
-        {{i.get_url}}<br>
+<div class="dropdown">
+  <button class="dropbtn">filter</button>
+  <div class="dropdown-content">
+    <a href="/">all products</a>
+    {% for i in ct %}
+
+    <a href={{i.get_url}}>{{i.name}}</a>
+
+     {% endfor %}
+  </div>
+</div>
 
 
-      </b>
-      {% endfor %}
-
-    </div>
 
 <div class="wrapper row3">
   <main class="hoc container clear">
@@ -56,11 +109,11 @@
       <ul class="nospace group btmspace-80">
         {% for i in pr %}
         <li class="one_third">
-          <figure><a class="imgover" href="#"><img src="{{i.img.url}}" alt="" style="width:20000px;height:200px;"></a>
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="width:200px;height:200px;"></a>
 
             <figcaption>
               <h6 class="heading">{{i.name}}</h6>
-              <p>{{i.desc|truncatechars:5}}</p>
+              <p>{{i.desc|truncatewords:5}}</p>
                <p>{{i.price}} Rs</p>
               <p>stock left:{{i.stock}} </p>
             </figcaption>

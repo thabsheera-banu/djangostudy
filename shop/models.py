@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
-# Create your models here.hi akms,dl
+# Create your models
 
 
 
@@ -19,6 +19,9 @@ class categ(models.Model):
     def __str__(self):
         return '{}'.format(self.name)
 
+
+
+
 class products(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
@@ -28,6 +31,9 @@ class products(models.Model):
     available = models.BooleanField()
     price = models.IntegerField()
     category=models.ForeignKey(categ,on_delete=models.CASCADE)
+    def get_url(self):
+        return reverse('details',args=[self.category.slug,self.slug])
+
     def __str__(self):
         return '{}'.format(self.name)
 
