@@ -5,7 +5,7 @@ from .models import *
 
 def home(request,c_slug=None):
     prodt=None
-    c_slug=None
+    #c_slug=None
     if c_slug!=None:
         c_page=get_object_or_404(categ,slug=c_slug)
         prodt=products.objects.filter(category=c_page,available=True)
@@ -15,7 +15,8 @@ def home(request,c_slug=None):
     return render(request, 'index.html', {'pr': prodt, 'ct': cat})
 def prodDetails(request,c_slug,product_slug):
     try:
-        prod=products.objects.get(category_slug=c_slug,slug=product_slug)
+        prod=products.objects.get(slug=product_slug)
+
     except Exception as e:
         raise e
     return render(request,'item.html',{'pr':prod})
