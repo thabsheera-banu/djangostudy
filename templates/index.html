@@ -74,6 +74,42 @@
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+
+  <div class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+
+          <li id="searchform">
+            <div>
+              <form action="{% url 'search' %}" method="GET">
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search item&hellip;" name="q">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+  <button class="dropbtn">filter</button>
+  <div class="dropdown-content">
+    <a href="/">all products</a>
+    {% for i in ct %}
+
+    <a href={{i.get_url}}>{{i.name}}</a>
+
+     {% endfor %}
+  </div>
+</div>
+
   <div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
     <article>
@@ -87,17 +123,6 @@
   </div>
   <!-- ################################################################################################ -->
 </div>
-<div class="dropdown">
-  <button class="dropbtn">filter</button>
-  <div class="dropdown-content">
-    <a href="/">all products</a>
-    {% for i in ct %}
-
-    <a href={{i.get_url}}>{{i.name}}</a>
-
-     {% endfor %}
-  </div>
-</div>
 
 
 
@@ -107,15 +132,15 @@
 
     <section id="introblocks">
       <ul class="nospace group btmspace-80">
-        {% for i in pr %}
+        {% for i in pg.object_list %}
         <li class="one_third">
           <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="width:200px;height:200px;"></a>
 
             <figcaption>
               <h6 class="heading">{{i.name}}</h6>
-              <p>{{i.desc|truncatewords:5}}</p>
+              <!--<p>{{i.desc|truncatewords:5}}</p>-->
                <p>{{i.price}} Rs</p>
-              <p>stock left:{{i.stock}} </p>
+              <!--<p>stock left:{{i.stock}} </p>-->
             </figcaption>
           </figure>
         </li>
@@ -128,6 +153,11 @@
 
       </ul>
     </section>
+    <center>
+      {% for p in pg.paginator.page_range %}
+      <a href="?page={{p}}"class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+      {% endfor %}
+    </center>
     <hr class="btmspace-80">
 
     <div class="clear"></div>

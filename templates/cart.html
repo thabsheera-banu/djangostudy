@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Shopping Cart</title>
 
-    <link rel="stylesheet" href="cr/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'cr/style.css' %}" media="screen" title="no title" charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <meta name="robots" content="noindex,follow" />
   </head>
@@ -22,24 +25,26 @@
         <div class="buttons">
           <span><i class="fa fa-trash"></i></span>
         </div>
+  {% for i in ci %}
 
         <div class="image">
-          <img src="cr/item-1.png" alt="" />
+          <img src="{{i.prodt.get.url}}" alt="{{i.prodt.get.name}}" />
         </div>
 
         <div class="description">
-          <span>Common Projects</span>
-          <span>Bball High</span>
+          <span>ID:{{i.prodt.id}}</span>
+          <span>price:{{i.prodt.price}}</span>
           <span>White</span>
         </div>
+  {% endfor %}
 
         <div class="quantity">
           <button class="plus-btn" type="button" name="button">
-            <img src="cr/plus.svg" alt="" />
+            <img src="{% static 'cr/plus.svg' %}" alt="" />
           </button>
           <input type="text" name="name" value="1">
           <button class="minus-btn" type="button" name="button">
-            <img src="cr/minus.svg" alt="" />
+            <img src="{% static 'cr/minus.svg' %}" alt="" />
           </button>
         </div>
 
@@ -50,3 +55,4 @@
 
   </body>
 </html>
+{% endblock %}

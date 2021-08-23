@@ -11,6 +11,7 @@ class items(models.Model):
     prodt=models.ForeignKey(products,on_delete=models.CASCADE)
     cart=models.ForeignKey(cartlist,on_delete=models.CASCADE)
     quantity=models.IntegerField()
+    active=models.BooleanField(default=True)
 
     def __str__(self):
         return self.prodt

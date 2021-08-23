@@ -31,9 +31,14 @@ https://templatemo.com/tm-544-comparto
                 <article class="tm-section-1-r tm-bg-color-8">
                     <h2 class="tm-mb-2 tm-title-color">{{pr.name}}</h2>
                     <p>price:{{pr.price}}<br>{{pr.desc}}</p>
-                    <p>stock:{{pr.stock}}</p>
 
-                    <a href="#services" class="tm-btn tm-btn-1 tm-link-to-services">Add to cart</a>
+                    <p>stock:{{pr.stock}}</p>
+        {% if pr.stock <= 0 %}
+        <h1 style="color:red">sorry no stock left</h1>
+
+                    {% else %}
+                    <a href="{% url 'addcart' pr.id %}" class="tm-btn tm-btn-1 tm-link-to-services">Add to cart</a>
+        {% endif %}
                 </article>
             </div>
         </section>
