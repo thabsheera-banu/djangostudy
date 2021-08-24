@@ -8,11 +8,12 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def cart_details(request, tot=0, count=0, cart_items=None):
     try:
+        ct_items=None     # ith Assign cheytheellel line 20 l Error Varum 
         ct=cartlist.objects.get(cart_id=c_id(request))
         ct_items=items.objects.filter(cart=ct,active=True)
         for i in ct_items:
-            tot +=(i.prodt.price*i.quan)
-            count+=i.quan
+            tot +=(i.prodt.price*i.quantity)
+            count+=i.quantity
     except ObjectDoesNotExist:
         pass
     
@@ -35,13 +36,13 @@ def add_cart(request, product_id):
         ct.save()
     try:
         c_items=items.objects.get(prodt=prod,cart=ct)
-        if c_items.quan < c_items.prodt.stock:
-            c_items.quan+=1
+        if c_items.quantity < c_items.prodt.stock:   # ivade quantity
+            c_items.quantity+=1   # ivade quantity
         c_items.save()
-    except cartlist.DoesNotExist:
-        c_items=items.objects.create(prodt=prod,quan=1,cart=ct)
+    except items.DoesNotExist:   # ivade items
+        c_items=items.objects.create(prodt=prod,quantity=1,cart=ct)  # ivade quantity
         c_items.save()
-    return redirect('cartDetails')
+    return redirect('çartDetails')  # Ith Thettayirunnu
 
 
 
